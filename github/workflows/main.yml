@@ -1,0 +1,17 @@
+name: GSM-ULTIMATE-BILLION
+on: [workflow_dispatch]
+jobs:
+  billion_attack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Start GSM Engine
+        run: python gsm_super_engine.py
+      - name: Global Deployment
+        run: |
+          git config --global user.name "GSM-Commander"
+          git config --global user.email "ghilase@gsm.com"
+          git add .
+          git commit -m "GSM: +10,000,000 Global Expansion"
+          git push
+          
