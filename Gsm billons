@@ -1,0 +1,23 @@
+name: GSM Billion Generator
+on:
+  push:
+  workflow_dispatch: # هذا يضيف زر "تشغيل يدوياً"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Mass Generate
+        run: python mass_matrix_gen.py
+      - name: Save To Matrix
+        run: |
+          git config --global user.name "GSM-Commander"
+          git config --global user.email "ghilase@gsm.com"
+          git add THE_BILLION_MATRIX.json
+          git commit -m "GSM: +100k Soldiers added to Matrix"
+          git push
