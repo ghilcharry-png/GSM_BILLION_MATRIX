@@ -1,0 +1,17 @@
+name: GSM-Billion
+on: [push, workflow_dispatch]
+jobs:
+  run-factory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Matrix
+        run: python mass_matrix_gen.py
+      - name: Save To GitHub
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@gsm.com"
+          git add .
+          git commit -m "add soldiers"
+          git push
+          
